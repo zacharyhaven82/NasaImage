@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NasaImage/NasaImageViewController.swift"
-            timestampString = "580306599.072963"
+            timestampString = "580331765.491161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "image"
-            landmarkType = "24">
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "callService(with:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

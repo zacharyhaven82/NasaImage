@@ -8,6 +8,7 @@ target 'NasaImage' do
   # Pods for NasaImage
   pod 'Alamofire', '4.8.2'
   pod 'SwiftyJSON', '~> 4.0'
+	pod 'YouTubePlayer', '~> 0.4'
 
   target 'NasaImageTests' do
     inherit! :search_paths

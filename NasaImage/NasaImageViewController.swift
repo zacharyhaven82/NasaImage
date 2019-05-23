@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import WebKit
 
 class NasaImageViewController: UIViewController {
 	
@@ -22,17 +23,18 @@ class NasaImageViewController: UIViewController {
 	@IBOutlet weak var datePicker: UIDatePicker!
 	@IBOutlet weak var datePickerView: UIView!
 	@IBOutlet weak var activity: UIActivityIndicatorView!
+	@IBOutlet weak var webView: WKWebView!
 	
 	var image: UIImage? {
 		didSet {
-			guard let realJson = json else { return }
 			imageView.image = image
-			detailTextView.isHidden = false
-			detailTextView.text = realJson["explanation"].stringValue
-			title = realJson["title"].string
+			imageView.isHidden = false
+			webView.isHidden = true
 			activity.stop()
+			setTitleAndDetail()
 		}
 	}
+	var videoURL: URL?
 	var json: JSON?
 	
 	override func viewDidLoad() {
@@ -41,12 +43,12 @@ class NasaImageViewController: UIViewController {
 		title = ""
 		detailTextView.isHidden = true
 		datePickerView.isHidden = true
-		
+		webView.isHidden = true
+		imageView.isHidden = true
+		datePicker.maximumDate = Date()
+		datePicker.setValue(UIColor.white, forKeyPath: "textColor")
 		callService(with: datePicker.date)
 		dateButton.title = datePicker.date.toString(with: "MM-dd-yyyy")
-		let detailTap = UITapGestureRecognizer(target: self, action: #selector(toggleDetail))
-		detailTap.numberOfTapsRequired = 1
-		view.addGestureRecognizer(detailTap)
 		let aspectTap = UITapGestureRecognizer(target: self, action: #selector(toggleAspect))
 		aspectTap.numberOfTapsRequired = 2
 		view.addGestureRecognizer(aspectTap)
@@ -65,7 +67,9 @@ class NasaImageViewController: UIViewController {
 	}
 	
 	@IBAction func toggleDetail() {
-		detailTextView.isHidden = !detailTextView.isHidden
+		if datePickerView.isHidden {
+			detailTextView.isHidden = !detailTextView.isHidden
+		}
 	}
 	
 	@IBAction func toggleAspect() {
@@ -73,9 +77,12 @@ class NasaImageViewController: UIViewController {
 	}
 	
 	@IBAction func shareImage(_ sender: Any) {
-		guard let realImage = image else { return }
-		let activityViewController = UIActivityViewController(activityItems: [realImage], applicationActivities: nil)
+		let activityViewController = UIActivityViewController(activityItems: [image ?? videoURL], applicationActivities: nil)
 		present(activityViewController, animated: true, completion: nil)
+	}
+	
+	@IBAction func retryService(_ sender: Any) {
+		callService(with: datePicker.date)
 	}
 	
 	private func callService(with date: Date) {
@@ -90,16 +97,50 @@ class NasaImageViewController: UIViewController {
 				let json = JSON(value)
 				print("JSON: \(json)")
 				guard let self = self else { return }
+				if let errorMsg = json["msg"].string {
+					self.activity.stop()
+					self.presentErrorAlert(errorMsg)
+					return
+				}
 				self.json = json
-				if let url = URL(string: json["hdurl"].stringValue), let data = try? Data(contentsOf: url) {
-					self.image = UIImage(data: data)
+				if let hdURL = json["hdurl"].string,
+					let url = URL(string: hdURL) {
+					self.mediaIsImage(url: url)
+				} else if json["media_type"].string == "video",
+					let hdURL = json["url"].string,
+					let url = URL(string: hdURL) {
+					self.mediaIsVideo(url: url)
 				}
 			case .failure(let error):
 				self?.activity.stop()
-				self?.presentErrorAlert(error)
+				self?.presentErrorAlert(error.localizedDescription)
 				print(error)
 			}
 		}
+	}
+	
+	func mediaIsImage(url: URL) {
+		if let data = try? Data(contentsOf: url),
+			let anImage = UIImage(data: data) {
+			image = anImage
+			videoURL = nil
+		}
+	}
+	
+	func mediaIsVideo(url: URL) {
+		image = nil
+		videoURL = url
+		webView.load(URLRequest(url: url))
+		webView.isHidden = false
+		imageView.isHidden = true
+		activity.stop()
+		setTitleAndDetail()
+	}
+	
+	func setTitleAndDetail() {
+		detailTextView.isHidden = false
+		detailTextView.text = json?["explanation"].string
+		title = json?["title"].string
 	}
 }
 
@@ -118,11 +159,17 @@ extension UIActivityIndicatorView {
 
 extension UIViewController {
 	
-	func presentErrorAlert(_ error: Error) {
-		let viewController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-		let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+	func presentErrorAlert(_ error: String) {
+		let viewController = UIAlertController(title: "Error",
+											   message: error,
+											   preferredStyle: .alert)
+		let action = UIAlertAction(title: "OK",
+								   style: .default,
+								   handler: nil)
 		viewController.addAction(action)
-		self.present(viewController, animated: true, completion: nil)
+		self.present(viewController,
+					 animated: true,
+					 completion: nil)
 	}
 }
 
