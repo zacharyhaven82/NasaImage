@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Nasa Image View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="NasaImageViewController" customModule="NasaImage" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wfa-ED-uML">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wfa-ED-uML">
                                 <rect key="frame" x="0.0" y="116" width="414" height="263"/>
                             </imageView>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAg-hB-4LS">
+                            <wkWebView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAg-hB-4LS">
                                 <rect key="frame" x="0.0" y="116" width="414" height="263"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <wkWebViewConfiguration key="configuration">
@@ -102,25 +102,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="8MW-Bz-21d">
+                    <navigationItem key="navigationItem" id="8MW-Bz-21d">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="mtV-5s-1Lm">
                             <connections>
                                 <action selector="shareImage:" destination="BYZ-38-t0r" id="8az-fE-UbQ"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem title="Item" id="DYJ-lr-50N">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="dateButtonAction:" destination="BYZ-38-t0r" id="nAk-H0-HRQ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Details" id="fql-bW-zl1">
-                                <connections>
-                                    <action selector="toggleDetail" destination="BYZ-38-t0r" id="idA-GA-Z5t"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="DYJ-lr-50N">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="dateButtonAction:" destination="BYZ-38-t0r" id="nAk-H0-HRQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="aJj-Hu-aoM" id="JuR-o6-7C8"/>

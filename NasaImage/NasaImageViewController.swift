@@ -27,32 +27,67 @@ class NasaImageViewController: UIViewController {
 	
 	var image: UIImage? {
 		didSet {
-			imageView.image = image
-			imageView.isHidden = false
-			webView.isHidden = true
-			activity.stop()
-			setTitleAndDetail()
+			if image == nil {
+				webView.isHidden = false
+				imageView.isHidden = true
+			} else {
+				imageView.image = image
+				imageView.isHidden = false
+				webView.isHidden = true
+				activity.stop()
+				setTitleAndDetail()
+			}
 		}
 	}
-	var videoURL: URL?
+	var videoURL: URL? {
+		didSet {
+			if videoURL == nil {
+				webView.isHidden = true
+				imageView.isHidden = false
+			} else {
+				guard let url = videoURL else { return }
+				webView.load(URLRequest(url: url))
+				activity.stop()
+				setTitleAndDetail()
+			}
+		}
+	}
 	var json: JSON?
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		title = ""
-		detailTextView.isHidden = true
-		datePickerView.isHidden = true
-		webView.isHidden = true
-		imageView.isHidden = true
 		datePicker.maximumDate = Date()
 		datePicker.setValue(UIColor.white, forKeyPath: "textColor")
 		callService(with: datePicker.date)
-		dateButton.title = datePicker.date.toString(with: "MM-dd-yyyy")
-		let aspectTap = UITapGestureRecognizer(target: self, action: #selector(toggleAspect))
+		setupGestures()
+    }
+	
+	private func setupGestures() {
+		let swipeRight = UISwipeGestureRecognizer(target: self,
+												 action: #selector(previousDayAction(_:)))
+		swipeRight.direction = .right
+		view.addGestureRecognizer(swipeRight)
+		let swipeLeft = UISwipeGestureRecognizer(target: self,
+												  action: #selector(nextDayAction(_:)))
+		swipeLeft.direction = .left
+		view.addGestureRecognizer(swipeLeft)
+		let aspectTap = UITapGestureRecognizer(target: self,
+											   action: #selector(toggleAspect))
 		aspectTap.numberOfTapsRequired = 2
 		view.addGestureRecognizer(aspectTap)
-    }
+	}
+	
+	@IBAction func previousDayAction(_ sender: Any) {
+		datePicker.date = datePicker.date.addingTimeInterval(-1*24*60*60)
+		callService(with: datePicker.date)
+	}
+	
+	@IBAction func nextDayAction(_ sender: Any) {
+		if Calendar(identifier: .gregorian).isDateInToday(datePicker.date) { return }
+		datePicker.date = datePicker.date.addingTimeInterval(1*24*60*60)
+		callService(with: datePicker.date)
+	}
 	
 	@IBAction func dateButtonAction(_ sender: Any) {
 		title = ""
@@ -61,15 +96,7 @@ class NasaImageViewController: UIViewController {
 	}
 	
 	@IBAction func doneButtonAction(_ sender: Any) {
-		dateButton.title = datePicker.date.toString(with: "MM-dd-yyyy")
-		datePickerView.isHidden = true
 		callService(with: datePicker.date)
-	}
-	
-	@IBAction func toggleDetail() {
-		if datePickerView.isHidden {
-			detailTextView.isHidden = !detailTextView.isHidden
-		}
 	}
 	
 	@IBAction func toggleAspect() {
@@ -86,8 +113,10 @@ class NasaImageViewController: UIViewController {
 	}
 	
 	private func callService(with date: Date) {
+		view.hideAllSubviews()
+		title = ""
 		activity.start()
-		
+		dateButton.title = datePicker.date.toString(with: "MM-dd-yyyy")
 		let fullURL = nasaURL + "?" +  apiKey + "&date=" + date.toString(with: "yyyy-MM-dd")
 		Alamofire.request(fullURL).responseJSON {[weak self] response in
 			debugPrint(response)
@@ -130,11 +159,6 @@ class NasaImageViewController: UIViewController {
 	func mediaIsVideo(url: URL) {
 		image = nil
 		videoURL = url
-		webView.load(URLRequest(url: url))
-		webView.isHidden = false
-		imageView.isHidden = true
-		activity.stop()
-		setTitleAndDetail()
 	}
 	
 	func setTitleAndDetail() {
@@ -170,6 +194,13 @@ extension UIViewController {
 		self.present(viewController,
 					 animated: true,
 					 completion: nil)
+	}
+}
+
+extension UIView {
+	
+	func hideAllSubviews() {
+		subviews.forEach({ $0.isHidden = true })
 	}
 }
 
