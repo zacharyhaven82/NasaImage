@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		56FE0BA54379BE4F52FB24C0 /* Pods_NasaImageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC20AA526CC43AA910A662D2 /* Pods_NasaImageUITests.framework */; };
 		6C2C5F645C96BDB5967C4A6E /* Pods_NasaImageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2604757BAF88BB61098BAE69 /* Pods_NasaImageTests.framework */; };
+		B606E1B4229F817700586C37 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606E1B3229F817700586C37 /* SettingsTableViewController.swift */; };
+		B606E1B6229F81B100586C37 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B606E1B5229F81B100586C37 /* WebKit.framework */; };
+		B606E1C1229F8FCE00586C37 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606E1BF229F893600586C37 /* SwitchTableViewCell.swift */; };
 		B6DA9E3922963057005A7284 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA9E3822963057005A7284 /* AppDelegate.swift */; };
 		B6DA9E3E22963057005A7284 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DA9E3C22963057005A7284 /* Main.storyboard */; };
 		B6DA9E4022963059005A7284 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA9E3F22963059005A7284 /* Assets.xcassets */; };
@@ -43,6 +46,9 @@
 		6841499DD18D340DCB65A5B4 /* Pods-NasaImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NasaImage.debug.xcconfig"; path = "Target Support Files/Pods-NasaImage/Pods-NasaImage.debug.xcconfig"; sourceTree = "<group>"; };
 		703BBA600DEBAD3E2E673E2D /* Pods-NasaImageUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NasaImageUITests.release.xcconfig"; path = "Target Support Files/Pods-NasaImageUITests/Pods-NasaImageUITests.release.xcconfig"; sourceTree = "<group>"; };
 		98EC60335969BF3DFB8E231D /* Pods-NasaImageUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NasaImageUITests.debug.xcconfig"; path = "Target Support Files/Pods-NasaImageUITests/Pods-NasaImageUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B606E1B3229F817700586C37 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		B606E1B5229F81B100586C37 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		B606E1BF229F893600586C37 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		B6DA9E3522963057005A7284 /* NasaImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasaImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DA9E3822963057005A7284 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DA9E3D22963057005A7284 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B606E1B6229F81B100586C37 /* WebKit.framework in Frameworks */,
 				FC577997B0EBE3866CBADA79 /* Pods_NasaImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +113,7 @@
 		7AED3B407983709D581FF246 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B606E1B5229F81B100586C37 /* WebKit.framework */,
 				F0C485FB78615F88C7EABC36 /* Pods_NasaImage.framework */,
 				2604757BAF88BB61098BAE69 /* Pods_NasaImageTests.framework */,
 				FC20AA526CC43AA910A662D2 /* Pods_NasaImageUITests.framework */,
@@ -140,6 +148,8 @@
 			children = (
 				B6DA9E3822963057005A7284 /* AppDelegate.swift */,
 				B6DA9E6622963285005A7284 /* NasaImageViewController.swift */,
+				B606E1B3229F817700586C37 /* SettingsTableViewController.swift */,
+				B606E1BF229F893600586C37 /* SwitchTableViewCell.swift */,
 				B6DA9E3C22963057005A7284 /* Main.storyboard */,
 				B6DA9E3F22963059005A7284 /* Assets.xcassets */,
 				B6DA9E4122963059005A7284 /* LaunchScreen.storyboard */,
@@ -395,7 +405,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6DA9E3922963057005A7284 /* AppDelegate.swift in Sources */,
+				B606E1C1229F8FCE00586C37 /* SwitchTableViewCell.swift in Sources */,
 				B6DA9E6722963285005A7284 /* NasaImageViewController.swift in Sources */,
+				B606E1B4229F817700586C37 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

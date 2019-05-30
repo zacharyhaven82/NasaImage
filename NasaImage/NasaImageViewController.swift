@@ -39,6 +39,22 @@ class NasaImageViewController: UIViewController {
 			}
 		}
 	}
+	
+	var hdImage: UIImage? {
+		didSet {
+			if hdImage == nil {
+				webView.isHidden = false
+				imageView.isHidden = true
+			} else {
+				imageView.image = hdImage
+				imageView.isHidden = false
+				webView.isHidden = true
+				activity.stop()
+				setTitleAndDetail()
+			}
+		}
+	}
+	
 	var videoURL: URL? {
 		didSet {
 			if videoURL == nil {
@@ -90,7 +106,6 @@ class NasaImageViewController: UIViewController {
 	}
 	
 	@IBAction func dateButtonAction(_ sender: Any) {
-		title = ""
 		detailTextView.isHidden = true
 		datePickerView.isHidden = false
 	}
@@ -104,7 +119,7 @@ class NasaImageViewController: UIViewController {
 	}
 	
 	@IBAction func shareImage(_ sender: Any) {
-		let activityViewController = UIActivityViewController(activityItems: [image ?? videoURL], applicationActivities: nil)
+		let activityViewController = UIActivityViewController(activityItems: [image ?? (videoURL?.absoluteString ?? "")], applicationActivities: nil)
 		present(activityViewController, animated: true, completion: nil)
 	}
 	
@@ -114,7 +129,8 @@ class NasaImageViewController: UIViewController {
 	
 	private func callService(with date: Date) {
 		view.hideAllSubviews()
-		title = ""
+		title = datePicker.date.toString(with: "MM-dd-yyyy")
+		navigationItem.title = ""
 		activity.start()
 		dateButton.title = datePicker.date.toString(with: "MM-dd-yyyy")
 		let fullURL = nasaURL + "?" +  apiKey + "&date=" + date.toString(with: "yyyy-MM-dd")
@@ -132,13 +148,20 @@ class NasaImageViewController: UIViewController {
 					return
 				}
 				self.json = json
-				if let hdURL = json["hdurl"].string,
-					let url = URL(string: hdURL) {
-					self.mediaIsImage(url: url)
+				if json["media_type"].string == "image",
+					let regUrl = json["url"].string,
+					let url = URL(string: regUrl) {
+					UserDefaults.standard.bool(forKey: "downloadHDPhotos")
+					self.mediaIsImage(url: url,
+									  hdUrl: UserDefaults.standard.bool(forKey: "downloadHDPhotos") ?
+										URL(string: json["url"].string ?? "")
+										: nil)
 				} else if json["media_type"].string == "video",
 					let hdURL = json["url"].string,
 					let url = URL(string: hdURL) {
 					self.mediaIsVideo(url: url)
+				} else {
+					self.presentErrorAlert("Image not available")
 				}
 			case .failure(let error):
 				self?.activity.stop()
@@ -148,10 +171,16 @@ class NasaImageViewController: UIViewController {
 		}
 	}
 	
-	func mediaIsImage(url: URL) {
+	func mediaIsImage(url: URL, hdUrl: URL?) {
 		if let data = try? Data(contentsOf: url),
 			let anImage = UIImage(data: data) {
 			image = anImage
+			videoURL = nil
+		}
+		if let guaranteedUrl = hdUrl,
+			let data = try? Data(contentsOf: guaranteedUrl),
+			let anImage = UIImage(data: data) {
+			hdImage = anImage
 			videoURL = nil
 		}
 	}
@@ -164,7 +193,7 @@ class NasaImageViewController: UIViewController {
 	func setTitleAndDetail() {
 		detailTextView.isHidden = false
 		detailTextView.text = json?["explanation"].string
-		title = json?["title"].string
+		navigationItem.title = json?["title"].string
 	}
 }
 
