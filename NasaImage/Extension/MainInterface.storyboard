@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ddF-Zp-jby">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Extension View Controller-->
+        <scene sceneID="bca-dp-lfR">
+            <objects>
+                <viewController id="ddF-Zp-jby" customClass="ExtensionViewController" customModule="NasaImage_Extension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lDR-NQ-pNq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gcf-iB-s4n">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GyH-8u-cKO">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8PX-nc-ohb">
+                                <rect key="frame" x="197" y="443" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jX-6Y-T0E">
+                                <rect key="frame" x="186" y="442.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KoM-2e-TEm" firstAttribute="bottom" secondItem="Gcf-iB-s4n" secondAttribute="bottom" id="9wk-sU-sSz"/>
+                            <constraint firstItem="KoM-2e-TEm" firstAttribute="bottom" secondItem="GyH-8u-cKO" secondAttribute="bottom" id="C6a-uA-f2k"/>
+                            <constraint firstItem="GyH-8u-cKO" firstAttribute="top" secondItem="KoM-2e-TEm" secondAttribute="top" id="DHL-Od-EQi"/>
+                            <constraint firstItem="GyH-8u-cKO" firstAttribute="leading" secondItem="KoM-2e-TEm" secondAttribute="leading" id="EWX-Lc-WeJ"/>
+                            <constraint firstItem="2jX-6Y-T0E" firstAttribute="centerX" secondItem="KoM-2e-TEm" secondAttribute="centerX" id="IYA-kQ-kr9"/>
+                            <constraint firstItem="8PX-nc-ohb" firstAttribute="centerY" secondItem="KoM-2e-TEm" secondAttribute="centerY" id="Leg-Tt-zd3"/>
+                            <constraint firstItem="KoM-2e-TEm" firstAttribute="trailing" secondItem="GyH-8u-cKO" secondAttribute="trailing" id="RT8-dg-nnB"/>
+                            <constraint firstItem="KoM-2e-TEm" firstAttribute="trailing" secondItem="Gcf-iB-s4n" secondAttribute="trailing" id="beH-St-3MX"/>
+                            <constraint firstItem="2jX-6Y-T0E" firstAttribute="centerY" secondItem="KoM-2e-TEm" secondAttribute="centerY" id="gic-r9-hub"/>
+                            <constraint firstItem="Gcf-iB-s4n" firstAttribute="top" secondItem="KoM-2e-TEm" secondAttribute="top" id="pCz-oQ-rrh"/>
+                            <constraint firstItem="8PX-nc-ohb" firstAttribute="centerX" secondItem="KoM-2e-TEm" secondAttribute="centerX" id="rhE-oN-Dhf"/>
+                            <constraint firstItem="Gcf-iB-s4n" firstAttribute="leading" secondItem="KoM-2e-TEm" secondAttribute="leading" id="x41-f5-BFI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KoM-2e-TEm"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="activity" destination="8PX-nc-ohb" id="ZrN-oQ-YZp"/>
+                        <outlet property="errorLabel" destination="2jX-6Y-T0E" id="gLc-n1-9g3"/>
+                        <outlet property="imageView" destination="Gcf-iB-s4n" id="XjU-Au-zxL"/>
+                        <outlet property="webView" destination="GyH-8u-cKO" id="svS-ly-Gia"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5es-bg-eZj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="33" y="90"/>
+        </scene>
+    </scenes>
+</document>

@@ -7,14 +7,10 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 import WebKit
 
 class NasaImageViewController: UIViewController {
-	
-	let nasaURL = "https://api.nasa.gov/planetary/apod"
-	let apiKey = "api_key=BBHc4u9eVEI5L9VPbbBbxRo9yfRezAFMNXsbB4G5"
 
 	@IBOutlet weak var dateButton: UIBarButtonItem!
 	@IBOutlet weak var imageView: UIImageView!
@@ -24,6 +20,7 @@ class NasaImageViewController: UIViewController {
 	@IBOutlet weak var datePickerView: UIView!
 	@IBOutlet weak var activity: UIActivityIndicatorView!
 	@IBOutlet weak var webView: WKWebView!
+	@IBOutlet weak var likeButton: UIBarButtonItem!
 	
 	var image: UIImage? {
 		didSet {
@@ -69,10 +66,17 @@ class NasaImageViewController: UIViewController {
 		}
 	}
 	var json: JSON?
+	var liked = false {
+		didSet {
+			likeButton.image = liked ? UIImage(named: "Filled Star") : UIImage(named: "Star")
+		}
+	}
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
+		
+		likeButton.image = UIImage(named: "Star")
 		datePicker.maximumDate = Date()
 		datePicker.setValue(UIColor.white, forKeyPath: "textColor")
 		callService(with: datePicker.date)
@@ -127,48 +131,47 @@ class NasaImageViewController: UIViewController {
 		callService(with: datePicker.date)
 	}
 	
+	@IBAction func likeAction(_ sender: Any) {
+		liked = !liked
+	}
+	
 	private func callService(with date: Date) {
 		view.hideAllSubviews()
 		title = datePicker.date.toString(with: "MM-dd-yyyy")
 		navigationItem.title = ""
 		activity.start()
 		dateButton.title = datePicker.date.toString(with: "MM-dd-yyyy")
-		let fullURL = nasaURL + "?" +  apiKey + "&date=" + date.toString(with: "yyyy-MM-dd")
-		Alamofire.request(fullURL).responseJSON {[weak self] response in
-			debugPrint(response)
-			
-			switch response.result {
-			case .success(let value):
-				let json = JSON(value)
-				print("JSON: \(json)")
-				guard let self = self else { return }
-				if let errorMsg = json["msg"].string {
-					self.activity.stop()
-					self.presentErrorAlert(errorMsg)
-					return
-				}
-				self.json = json
-				if json["media_type"].string == "image",
-					let regUrl = json["url"].string,
-					let url = URL(string: regUrl) {
-					UserDefaults.standard.bool(forKey: "downloadHDPhotos")
-					self.mediaIsImage(url: url,
-									  hdUrl: UserDefaults.standard.bool(forKey: "downloadHDPhotos") ?
-										URL(string: json["url"].string ?? "")
-										: nil)
-				} else if json["media_type"].string == "video",
-					let hdURL = json["url"].string,
-					let url = URL(string: hdURL) {
-					self.mediaIsVideo(url: url)
-				} else {
-					self.presentErrorAlert("Image not available")
-				}
-			case .failure(let error):
-				self?.activity.stop()
-				self?.presentErrorAlert(error.localizedDescription)
-				print(error)
+		
+		NasaImageService().callService(with: date, success: {[weak self] value in
+			let json = JSON(value)
+			print("JSON: \(json)")
+			guard let self = self else { return }
+			if let errorMsg = json["msg"].string {
+				self.activity.stop()
+				self.presentErrorAlert(errorMsg)
+				return
 			}
-		}
+			self.json = json
+			if json["media_type"].string == "image",
+				let regUrl = json["url"].string,
+				let url = URL(string: regUrl) {
+				UserDefaults.standard.bool(forKey: "downloadHDPhotos")
+				self.mediaIsImage(url: url,
+								  hdUrl: UserDefaults.standard.bool(forKey: "downloadHDPhotos") ?
+									URL(string: json["url"].string ?? "")
+									: nil)
+			} else if json["media_type"].string == "video",
+				let hdURL = json["url"].string,
+				let url = URL(string: hdURL) {
+				self.mediaIsVideo(url: url)
+			} else {
+				self.presentErrorAlert("Image not available")
+			}
+		}, failure: {[weak self] error in
+			guard let self = self else { return }
+			self.activity.stop()
+			self.presentErrorAlert(error)
+		})
 	}
 	
 	func mediaIsImage(url: URL, hdUrl: URL?) {
@@ -197,19 +200,6 @@ class NasaImageViewController: UIViewController {
 	}
 }
 
-extension UIActivityIndicatorView {
-	
-	func start() {
-		self.startAnimating()
-		self.isHidden = false
-	}
-	
-	func stop() {
-		self.stopAnimating()
-		self.isHidden = true
-	}
-}
-
 extension UIViewController {
 	
 	func presentErrorAlert(_ error: String) {
@@ -230,14 +220,5 @@ extension UIView {
 	
 	func hideAllSubviews() {
 		subviews.forEach({ $0.isHidden = true })
-	}
-}
-
-extension Date {
-	
-	func toString(with format: String) -> String {
-		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = format
-		return dateFormatter.string(from: self)
 	}
 }

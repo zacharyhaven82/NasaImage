@@ -13,6 +13,11 @@ target 'NasaImage' do
     inherit! :search_paths
     # Pods for testing
   end
+	
+	target 'NasaImage-Extension' do
+		# Added here event though the target only imports MyAppKit but it worked
+		pod 'Alamofire', '4.8.2'
+	end
 
   target 'NasaImageUITests' do
     inherit! :search_paths
