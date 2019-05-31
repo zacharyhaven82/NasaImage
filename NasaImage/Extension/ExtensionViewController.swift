@@ -99,7 +99,8 @@ class ExtensionViewController: UIViewController, NCWidgetProviding {
 		errorLabel.isHidden = false
 	}
 	
-	func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+	func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode,
+										  withMaximumSize maxSize: CGSize) {
 		let expanded = activeDisplayMode == .expanded
 		preferredContentSize = expanded ? CGSize(width: maxSize.width, height: 400) : maxSize
 	}

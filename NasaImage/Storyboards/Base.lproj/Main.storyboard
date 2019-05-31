@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Nasa Image View Controller-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="NasaImageViewController" customModule="Nasa_Image" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="NIViewController" customModule="Nasa_Image" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,7 +109,7 @@
                                     <action selector="shareImage:" destination="BYZ-38-t0r" id="8az-fE-UbQ"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="Star" id="ob7-d2-mjC">
+                            <barButtonItem title="Item" image="Filled Star" id="ob7-d2-mjC">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="likeAction:" destination="BYZ-38-t0r" id="qPf-Tj-ZpD"/>
@@ -193,7 +193,7 @@
         <!--Settings-->
         <scene sceneID="Cad-pj-X54">
             <objects>
-                <tableViewController id="AMB-Qw-D6t" customClass="SettingsTableViewController" customModule="Nasa_Image" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="AMB-Qw-D6t" customClass="NISettingsTableViewController" customModule="Nasa_Image" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Guh-VQ-x2a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -202,7 +202,7 @@
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="switchCell" id="bAq-xW-eb8" customClass="SwitchTableViewCell" customModule="Nasa_Image" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="switchCell" id="bAq-xW-eb8" customClass="NISwitchTableViewCell" customModule="Nasa_Image" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bAq-xW-eb8" id="TxF-aW-dfv">
@@ -363,9 +363,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Best" width="25" height="25"/>
-        <image name="Star" width="25" height="25"/>
-        <image name="settings" width="25" height="25"/>
-        <image name="telescope" width="25" height="25"/>
+        <image name="Best" width="30" height="30"/>
+        <image name="Filled Star" width="30" height="30"/>
+        <image name="settings" width="30" height="30"/>
+        <image name="telescope" width="30" height="30"/>
     </resources>
 </document>

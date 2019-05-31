@@ -1,5 +1,5 @@
 //
-//  NasaImageService.swift
+//  NIService.swift
 //  NasaImage
 //
 //  Created by Zachary Haven on 5/30/19.
@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class NasaImageService {
+class NIService {
 	
 	private let nasaURL = "https://api.nasa.gov/planetary/apod"
 	private let apiKey = "api_key=BBHc4u9eVEI5L9VPbbBbxRo9yfRezAFMNXsbB4G5"
