@@ -10,9 +10,20 @@ import UIKit
 
 class NISettingsTableViewController: UITableViewController {
 
-    override func viewDidLoad() {
+	@IBOutlet weak var loginLogoutButton: UIBarButtonItem!
+	private let logoutTitle = "Logout"
+	private let loginTitle = "Login"
+	
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.tableFooterView = UIView()
+		if let currentUser = NILoginService.shared.currentUser {
+			print(currentUser)
+			loginLogoutButton.title = logoutTitle
+		} else {
+			loginLogoutButton.title = loginTitle
+		}
     }
 
     // MARK: - Table view data source
@@ -37,4 +48,11 @@ class NISettingsTableViewController: UITableViewController {
         return UITableViewCell()
     }
 
+	@IBAction func loginLogoutAction(_ sender: Any) {
+		if let _ = NILoginService.shared.currentUser {
+			NILoginService.logOut()
+		} else {
+			performSegue(withIdentifier: "loginFromSettingsSegue", sender: self)
+		}
+	}
 }

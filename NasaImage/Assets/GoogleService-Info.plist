@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1004249065296-canbe132ua1rmqlbfpk689gijgl9fbsi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1004249065296-canbe132ua1rmqlbfpk689gijgl9fbsi</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBfVcxiXPNy_5hDaP4zGze9T5kghD1xdrM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1004249065296</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.haven.nasa-image</string>
+	<key>PROJECT_ID</key>
+	<string>nasa-image-app-ee939</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nasa-image-app-ee939.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1004249065296:ios:5a52a5439a25a2a0</string>
+	<key>DATABASE_URL</key>
+	<string>https://nasa-image-app-ee939.firebaseio.com</string>
+</dict>
+</plist>

@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyJSON
 import WebKit
-import CloudKit
 
 class NIViewController: UIViewController {
 
@@ -98,30 +97,38 @@ class NIViewController: UIViewController {
 	}
 	
 	@IBAction func previousDayAction(_ sender: Any) {
+		NIAnalytics.logEvent(event: .previousDaySwipe)
 		datePicker.date = datePicker.date.addingTimeInterval(-1*24*60*60)
 		callService(with: datePicker.date)
 	}
 	
 	@IBAction func nextDayAction(_ sender: Any) {
+		NIAnalytics.logEvent(event: .nextDaySwipe)
 		if Calendar(identifier: .gregorian).isDateInToday(datePicker.date) { return }
 		datePicker.date = datePicker.date.addingTimeInterval(1*24*60*60)
 		callService(with: datePicker.date)
 	}
 	
 	@IBAction func dateButtonAction(_ sender: Any) {
+		NIAnalytics.logEvent(event: .dateButtonTap)
 		detailTextView.isHidden = true
 		datePickerView.isHidden = false
 	}
 	
 	@IBAction func doneButtonAction(_ sender: Any) {
+		NIAnalytics.logEvent(event: .doneButtonTap,
+							 parameters: ["Date Selected": datePicker.date.toString(with: "yyyy-MM-dd")])
 		callService(with: datePicker.date)
+		NIReviewHelper.checkAndAskForReview()
 	}
 	
 	@IBAction func toggleAspect() {
+		NIAnalytics.logEvent(event: .toggleAspect)
 		imageView.contentMode = imageView.contentMode == .scaleAspectFit ? .scaleAspectFill : .scaleAspectFit
 	}
 	
 	@IBAction func shareImage(_ sender: Any) {
+		NIAnalytics.logEvent(event: .shareTap)
 		let activityVC = UIActivityViewController(activityItems: [image ?? (videoURL?.absoluteString ?? "")],
 															  applicationActivities: nil)
 		present(activityVC, animated: true, completion: nil)
@@ -132,7 +139,13 @@ class NIViewController: UIViewController {
 	}
 	
 	@IBAction func likeAction(_ sender: Any) {
-		liked = !liked
+		NIAnalytics.logEvent(event: .liked,
+							 parameters: ["Date Selected": datePicker.date.toString(with: "yyyy-MM-dd")])
+		if NILoginService().loggedIn {
+			liked = !liked
+		} else {
+			performSegue(withIdentifier: "loginFromImageSegue", sender: self)
+		}
 		
 	}
 	
@@ -143,7 +156,7 @@ class NIViewController: UIViewController {
 		activity.start()
 		dateButton.title = datePicker.date.toString(with: "MM-dd-yyyy")
 		
-		NasaImageService().callService(with: date, success: {[weak self] value in
+		NasaImageService.callService(with: date, success: {[weak self] value in
 			let json = JSON(value)
 			print("JSON: \(json)")
 			guard let self = self else { return }
@@ -204,6 +217,8 @@ class NIViewController: UIViewController {
 extension UIViewController {
 	
 	func presentErrorAlert(_ error: String) {
+		NIAnalytics.logEvent(event: .errorPresented,
+							 parameters: ["Error": error])
 		let viewController = UIAlertController(title: "Error",
 											   message: error,
 											   preferredStyle: .alert)

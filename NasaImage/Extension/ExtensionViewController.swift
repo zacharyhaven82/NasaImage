@@ -55,7 +55,7 @@ class ExtensionViewController: UIViewController, NCWidgetProviding {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		NasaImageService().callService(with: Date(), success: {[weak self] value in
+		NasaImageService.callService(with: Date(), success: {[weak self] value in
 			let json = JSON(value)
 			print("JSON: \(json)")
 			guard let self = self else { return }
