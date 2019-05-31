@@ -44,7 +44,10 @@ class NILoginService {
 	}
 	
 	var loggedIn = false
-	var currentUser = Auth.auth().currentUser
+	
+	static func getCurrentUser() -> User? {
+		return Auth.auth().currentUser
+	}
 	
 	static func login(with email: String,
 					  _ password: String,
@@ -59,12 +62,13 @@ class NILoginService {
 		}
 	}
 	
-	static func logOut() {
+	static func logOut() -> Result<String> {
 		do {
 			try Auth.auth().signOut()
+			return .success("Sign Out Success")
 		} catch let error {
 			print(error)
-			// Do something here?
+			return .failure(error)
 		}
 	}
 	

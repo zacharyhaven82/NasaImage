@@ -18,13 +18,21 @@ class NISettingsTableViewController: UITableViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.tableFooterView = UIView()
-		if let currentUser = NILoginService.shared.currentUser {
+    }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setUserDetails()
+	}
+	
+	private func setUserDetails() {
+		if let currentUser = NILoginService.getCurrentUser() {
 			print(currentUser)
 			loginLogoutButton.title = logoutTitle
 		} else {
 			loginLogoutButton.title = loginTitle
 		}
-    }
+	}
 
     // MARK: - Table view data source
 
@@ -49,8 +57,14 @@ class NISettingsTableViewController: UITableViewController {
     }
 
 	@IBAction func loginLogoutAction(_ sender: Any) {
-		if let _ = NILoginService.shared.currentUser {
-			NILoginService.logOut()
+		if NILoginService.getCurrentUser() != nil {
+			switch NILoginService.logOut() {
+			case .success(let value):
+				print(value)
+				setUserDetails()
+			case .failure(let error):
+				presentErrorAlert(error.localizedDescription)
+			}
 		} else {
 			performSegue(withIdentifier: "loginFromSettingsSegue", sender: self)
 		}
