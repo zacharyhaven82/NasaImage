@@ -79,6 +79,14 @@ class NIViewController: UIViewController {
 		datePicker.setValue(UIColor.white, forKeyPath: "textColor")
 		callService(with: datePicker.date)
 		setupGestures()
+		
+		if let currentUser = NILoginService.getCurrentUser() {
+			NIRealTimeDatabase.getLike(for: "", user: currentUser, success: { liked in
+				print(liked)
+			}, failure: { error in
+				print(error)
+			})
+		}
     }
 	
 	private func setupGestures() {
@@ -141,9 +149,27 @@ class NIViewController: UIViewController {
 	@IBAction func likeAction(_ sender: Any) {
 		NIAnalytics.logEvent(event: .liked,
 							 parameters: ["Date Selected": datePicker.date.toString(with: "yyyy-MM-dd")])
-		if NILoginService().loggedIn {
-			liked = !liked
+		if let currentUser = NILoginService.getCurrentUser() {
+			if liked {
+				NIRealTimeDatabase.deleteLike(dateString: datePicker.date.toString(with: "yyyy-MM-dd"),
+											  user: currentUser,
+											  success: {[weak self] in
+					self?.liked = false
+				}, failure: {[weak self] error in
+					self?.presentErrorAlert(error.localizedDescription)
+				})
+			} else {
+				NIRealTimeDatabase.saveLike(dateString: datePicker.date.toString(with: "yyyy-MM-dd"),
+											user: currentUser,
+											success: {[weak self] in
+					self?.liked = true
+				}, failure: {[weak self] error in
+					self?.presentErrorAlert(error.localizedDescription)
+					self?.liked = false
+				})
+			}
 		} else {
+			liked = false
 			performSegue(withIdentifier: "loginFromImageSegue", sender: self)
 		}
 		
@@ -154,7 +180,19 @@ class NIViewController: UIViewController {
 		title = datePicker.date.toString(with: "MM-dd-yyyy")
 		navigationItem.title = ""
 		activity.start()
+		liked = false
 		dateButton.title = datePicker.date.toString(with: "MM-dd-yyyy")
+		
+		if let currentUser = NILoginService.getCurrentUser() {
+			NIRealTimeDatabase.getLike(for: datePicker.date.toString(with: "yyyy-MM-dd"),
+									   user: currentUser,
+									   success: {[weak self] liked in
+				self?.liked = liked
+			},
+									   failure: {[weak self] error in
+				self?.presentErrorAlert(error.localizedDescription)
+			})
+		}
 		
 		NasaImageService.callService(with: date, success: {[weak self] value in
 			let json = JSON(value)

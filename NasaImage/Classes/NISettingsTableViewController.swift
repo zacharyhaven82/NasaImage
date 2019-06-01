@@ -14,7 +14,6 @@ class NISettingsTableViewController: UITableViewController {
 	private let logoutTitle = "Logout"
 	private let loginTitle = "Login"
 	
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.tableFooterView = UIView()

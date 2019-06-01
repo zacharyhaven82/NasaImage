@@ -426,11 +426,11 @@
             </objects>
             <point key="canvasLocation" x="-633.33333333333337" y="52.989130434782609"/>
         </scene>
-        <!--Top 20-->
+        <!--Likes-->
         <scene sceneID="Zyi-uo-3Dt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7cK-92-SU6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Top 20" image="Best" id="4Nt-aE-LQM"/>
+                    <tabBarItem key="tabBarItem" title="Likes" image="Best" id="4Nt-aE-LQM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="Snd-Pi-wR4">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
