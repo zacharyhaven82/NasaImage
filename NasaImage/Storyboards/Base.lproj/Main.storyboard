@@ -361,7 +361,7 @@
         <!--Top 20-->
         <scene sceneID="B8D-lH-Agv">
             <objects>
-                <tableViewController id="Nim-Pb-rIc" sceneMemberID="viewController">
+                <tableViewController id="Nim-Pb-rIc" customClass="NIFavoritesTableViewController" customModule="Nasa_Image" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cQN-Z3-HpG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -414,6 +414,34 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="segmentedControlCell" rowHeight="45" id="EZt-oz-v22" customClass="NISegmentedControlTableViewCell" customModule="Nasa_Image" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="151" width="375" height="45"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EZt-oz-v22" id="Yyg-wg-Y8t">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UeJ-Fw-WP9">
+                                            <rect key="frame" x="16" y="11" width="343" height="24"/>
+                                            <segments>
+                                                <segment title="Top Likes"/>
+                                                <segment title="My Favorites"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="UeJ-Fw-WP9" secondAttribute="bottom" id="F1u-c3-CcA"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="UeJ-Fw-WP9" secondAttribute="trailing" id="HzP-bT-Vfu"/>
+                                        <constraint firstItem="UeJ-Fw-WP9" firstAttribute="leading" secondItem="Yyg-wg-Y8t" secondAttribute="leadingMargin" id="OhL-Y4-hPg"/>
+                                        <constraint firstItem="UeJ-Fw-WP9" firstAttribute="top" secondItem="Yyg-wg-Y8t" secondAttribute="topMargin" id="Zmv-gR-10Q"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="segmentedControl" destination="UeJ-Fw-WP9" id="t2g-hi-917"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Nim-Pb-rIc" id="Yjr-5u-J54"/>
@@ -424,7 +452,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5uo-Ab-eaZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-633.33333333333337" y="52.989130434782609"/>
+            <point key="canvasLocation" x="-634.39999999999998" y="52.463054187192121"/>
         </scene>
         <!--Likes-->
         <scene sceneID="Zyi-uo-3Dt">

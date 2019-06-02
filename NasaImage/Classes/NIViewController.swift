@@ -72,6 +72,14 @@ class NIViewController: UIViewController {
 		}
 	}
 	
+//	if let currentUser = NILoginService.getCurrentUser() {
+//		NIRealTimeDatabase.getLike(for: "", user: currentUser, success: { liked in
+//			print(liked)
+//		}, failure: { error in
+//			print(error)
+//		})
+//	}
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -79,15 +87,24 @@ class NIViewController: UIViewController {
 		datePicker.setValue(UIColor.white, forKeyPath: "textColor")
 		callService(with: datePicker.date)
 		setupGestures()
-		
+    }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		setupLikeDetails()
+	}
+	
+	private func setupLikeDetails() {
 		if let currentUser = NILoginService.getCurrentUser() {
-			NIRealTimeDatabase.getLike(for: "", user: currentUser, success: { liked in
-				print(liked)
-			}, failure: { error in
-				print(error)
+			NIRealTimeDatabase.getLike(for: datePicker.date.toString(with: "yyyy-MM-dd"),
+									   user: currentUser,
+									   success: {[weak self] liked in
+				self?.liked = liked
+			}, failure: {[weak self] error in
+				self?.presentErrorAlert(error.localizedDescription)
 			})
 		}
-    }
+	}
 	
 	private func setupGestures() {
 		let swipeRight = UISwipeGestureRecognizer(target: self,
