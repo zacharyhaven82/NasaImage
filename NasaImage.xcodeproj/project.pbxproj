@@ -121,7 +121,6 @@
 		B6143A2722A082AB00ABC057 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		B6143A2922A0847600ABC057 /* UIActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorView.swift; sourceTree = "<group>"; };
 		B6143A3622A0C2A300ABC057 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
-		B6143A4022A0C2A400ABC057 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6143A5E22A1834000ABC057 /* NIReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIReviewHelper.swift; sourceTree = "<group>"; };
 		B6437FEA22A06BF2004AC5AF /* NasaImage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NasaImage.entitlements; sourceTree = "<group>"; };
 		B6437FF122A06EDD004AC5AF /* NasaImage-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "NasaImage-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,14 +275,6 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		B6143A3822A0C2A300ABC057 /* NasaImage-iMessage */ = {
-			isa = PBXGroup;
-			children = (
-				B6143A4022A0C2A400ABC057 /* Info.plist */,
-			);
-			path = "NasaImage-iMessage";
-			sourceTree = "<group>";
-		};
 		B6437FF422A06EDD004AC5AF /* NasaImage-Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,7 +292,6 @@
 				B6DA9E4C2296305A005A7284 /* NasaImageTests */,
 				B6DA9E572296305A005A7284 /* NasaImageUITests */,
 				B6437FF422A06EDD004AC5AF /* NasaImage-Extension */,
-				B6143A3822A0C2A300ABC057 /* NasaImage-iMessage */,
 				B6DA9E3622963057005A7284 /* Products */,
 				4E34C13C3FD9EE19A03538DB /* Pods */,
 				7AED3B407983709D581FF246 /* Frameworks */,
