@@ -47,10 +47,10 @@ struct NIRealTimeDatabase {
 						let dateLiked = child.childSnapshot(forPath: "dateString").value as? String,
 						dateLiked == dateString {
 						success(true)
-					} else {
-						success(false)
+						return
 					}
 				}
+				success(false)
 			}
 		})
 	}

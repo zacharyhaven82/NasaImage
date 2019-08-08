@@ -72,14 +72,6 @@ class NIViewController: UIViewController {
 		}
 	}
 	
-//	if let currentUser = NILoginService.getCurrentUser() {
-//		NIRealTimeDatabase.getLike(for: "", user: currentUser, success: { liked in
-//			print(liked)
-//		}, failure: { error in
-//			print(error)
-//		})
-//	}
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -91,7 +83,6 @@ class NIViewController: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		setupLikeDetails()
 	}
 	
 	private func setupLikeDetails() {
@@ -200,16 +191,7 @@ class NIViewController: UIViewController {
 		liked = false
 		dateButton.title = datePicker.date.toString(with: "MM-dd-yyyy")
 		
-		if let currentUser = NILoginService.getCurrentUser() {
-			NIRealTimeDatabase.getLike(for: datePicker.date.toString(with: "yyyy-MM-dd"),
-									   user: currentUser,
-									   success: {[weak self] liked in
-				self?.liked = liked
-			},
-									   failure: {[weak self] error in
-				self?.presentErrorAlert(error.localizedDescription)
-			})
-		}
+		setupLikeDetails()
 		
 		NasaImageService.callService(with: date, success: {[weak self] value in
 			let json = JSON(value)
@@ -231,7 +213,7 @@ class NIViewController: UIViewController {
 									: nil)
 			} else if json["media_type"].string == "video",
 				let hdURL = json["url"].string,
-				let url = URL(string: hdURL) {
+				let url = URL(string: hdURL + "?playsinline=1") {
 				self.mediaIsVideo(url: url)
 			} else {
 				self.presentErrorAlert("Image not available")

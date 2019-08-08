@@ -36,12 +36,13 @@
 		B6143A5422A0D78E00ABC057 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA9E3822963057005A7284 /* AppDelegate.swift */; };
 		B6143A5F22A1834000ABC057 /* NIReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6143A5E22A1834000ABC057 /* NIReviewHelper.swift */; };
 		B6437FF322A06EDD004AC5AF /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6437FF222A06EDD004AC5AF /* NotificationCenter.framework */; };
-		B6437FF622A06EDD004AC5AF /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6437FF522A06EDD004AC5AF /* TodayViewController.swift */; };
-		B6437FF922A06EDD004AC5AF /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6437FF722A06EDD004AC5AF /* MainInterface.storyboard */; };
 		B6437FFD22A06EDD004AC5AF /* NasaImage-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B6437FF122A06EDD004AC5AF /* NasaImage-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B643800522A06F84004AC5AF /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B643800322A06F84004AC5AF /* ExtensionViewController.swift */; };
 		B643800722A06FA0004AC5AF /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B643800322A06F84004AC5AF /* ExtensionViewController.swift */; };
 		B643800922A07044004AC5AF /* NIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B643800822A07044004AC5AF /* NIService.swift */; };
+		B69FD11C22A7661D00CE7BB4 /* NIAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B600636E22A18E6400EFDA97 /* NIAnalytics.swift */; };
+		B69FD11E22A7662400CE7BB4 /* NIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B643800822A07044004AC5AF /* NIService.swift */; };
+		B69FD11F22A7662500CE7BB4 /* NIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B643800822A07044004AC5AF /* NIService.swift */; };
 		B6CA2E9722A1B2A10000E1C3 /* NIRealTimeDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA2E9622A1B2A10000E1C3 /* NIRealTimeDatabase.swift */; };
 		B6CA2E9822A1B2A10000E1C3 /* NIRealTimeDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA2E9622A1B2A10000E1C3 /* NIRealTimeDatabase.swift */; };
 		B6CA2E9922A1BA160000E1C3 /* NIRealTimeDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA2E9622A1B2A10000E1C3 /* NIRealTimeDatabase.swift */; };
@@ -49,6 +50,8 @@
 		B6CA2E9D22A1BEFB0000E1C3 /* NILoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA2E9C22A1BEFB0000E1C3 /* NILoginViewController.swift */; };
 		B6CA2E9F22A367F60000E1C3 /* NIFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA2E9E22A367F60000E1C3 /* NIFavoritesTableViewController.swift */; };
 		B6CA2EA522A374440000E1C3 /* NISegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA2EA422A374440000E1C3 /* NISegmentedControlTableViewCell.swift */; };
+		B6CA2EA922A4BF670000E1C3 /* NIImageViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA2EA822A4BF670000E1C3 /* NIImageViewTableViewCell.swift */; };
+		B6CA524E22FC979F00A2B49B /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA524D22FC979F00A2B49B /* NotificationCenter.swift */; };
 		B6DA9E3922963057005A7284 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA9E3822963057005A7284 /* AppDelegate.swift */; };
 		B6DA9E3E22963057005A7284 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DA9E3C22963057005A7284 /* Main.storyboard */; };
 		B6DA9E4022963059005A7284 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA9E3F22963059005A7284 /* Assets.xcassets */; };
@@ -123,8 +126,6 @@
 		B6437FEA22A06BF2004AC5AF /* NasaImage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NasaImage.entitlements; sourceTree = "<group>"; };
 		B6437FF122A06EDD004AC5AF /* NasaImage-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "NasaImage-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6437FF222A06EDD004AC5AF /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		B6437FF522A06EDD004AC5AF /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		B6437FF822A06EDD004AC5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		B6437FFA22A06EDD004AC5AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B643800322A06F84004AC5AF /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
 		B643800822A07044004AC5AF /* NIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIService.swift; sourceTree = "<group>"; };
@@ -132,6 +133,8 @@
 		B6CA2E9C22A1BEFB0000E1C3 /* NILoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NILoginViewController.swift; sourceTree = "<group>"; };
 		B6CA2E9E22A367F60000E1C3 /* NIFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		B6CA2EA422A374440000E1C3 /* NISegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NISegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
+		B6CA2EA822A4BF670000E1C3 /* NIImageViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIImageViewTableViewCell.swift; sourceTree = "<group>"; };
+		B6CA524D22FC979F00A2B49B /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		B6DA9E3522963057005A7284 /* Nasa Image.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nasa Image.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DA9E3822963057005A7284 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DA9E3D22963057005A7284 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -230,6 +233,7 @@
 				B6DA9E3822963057005A7284 /* AppDelegate.swift */,
 				B6143A2922A0847600ABC057 /* UIActivityIndicatorView.swift */,
 				B6143A2422A0765F00ABC057 /* Date.swift */,
+				B6CA524D22FC979F00A2B49B /* NotificationCenter.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -260,6 +264,7 @@
 				B6DA9E6622963285005A7284 /* NIViewController.swift */,
 				B6CA2E9C22A1BEFB0000E1C3 /* NILoginViewController.swift */,
 				B6CA2E9E22A367F60000E1C3 /* NIFavoritesTableViewController.swift */,
+				B6CA2EA822A4BF670000E1C3 /* NIImageViewTableViewCell.swift */,
 				B6CA2EA422A374440000E1C3 /* NISegmentedControlTableViewCell.swift */,
 				B606E1B3229F817700586C37 /* NISettingsTableViewController.swift */,
 				B606E1BF229F893600586C37 /* NISwitchTableViewCell.swift */,
@@ -282,20 +287,11 @@
 		B6437FF422A06EDD004AC5AF /* NasaImage-Extension */ = {
 			isa = PBXGroup;
 			children = (
-				B6437FF522A06EDD004AC5AF /* TodayViewController.swift */,
-				B6437FF722A06EDD004AC5AF /* MainInterface.storyboard */,
+				B643800322A06F84004AC5AF /* ExtensionViewController.swift */,
+				B6143A2722A082AB00ABC057 /* MainInterface.storyboard */,
 				B6437FFA22A06EDD004AC5AF /* Info.plist */,
 			);
 			path = "NasaImage-Extension";
-			sourceTree = "<group>";
-		};
-		B643800222A06F20004AC5AF /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				B643800322A06F84004AC5AF /* ExtensionViewController.swift */,
-				B6143A2722A082AB00ABC057 /* MainInterface.storyboard */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		B6DA9E2C22963056005A7284 = {
@@ -330,7 +326,6 @@
 				B6143A2F22A0C21900ABC057 /* Storyboards */,
 				B6143A2E22A0C1F900ABC057 /* Assets */,
 				B6143A2D22A0C1D700ABC057 /* General */,
-				B643800222A06F20004AC5AF /* Extension */,
 			);
 			path = NasaImage;
 			sourceTree = "<group>";
@@ -496,7 +491,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6143A2822A082AB00ABC057 /* MainInterface.storyboard in Resources */,
-				B6437FF922A06EDD004AC5AF /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,7 +675,6 @@
 				B600637022A18E6400EFDA97 /* NIAnalytics.swift in Sources */,
 				B643800522A06F84004AC5AF /* ExtensionViewController.swift in Sources */,
 				B6143A2322A0755800ABC057 /* NIService.swift in Sources */,
-				B6437FF622A06EDD004AC5AF /* TodayViewController.swift in Sources */,
 				B6CA2E9822A1B2A10000E1C3 /* NIRealTimeDatabase.swift in Sources */,
 				B6143A2622A0765F00ABC057 /* Date.swift in Sources */,
 			);
@@ -692,6 +685,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6DA9E3922963057005A7284 /* AppDelegate.swift in Sources */,
+				B6CA2EA922A4BF670000E1C3 /* NIImageViewTableViewCell.swift in Sources */,
 				B6CA2E9722A1B2A10000E1C3 /* NIRealTimeDatabase.swift in Sources */,
 				B643800722A06FA0004AC5AF /* ExtensionViewController.swift in Sources */,
 				B6CA2EA522A374440000E1C3 /* NISegmentedControlTableViewCell.swift in Sources */,
@@ -701,6 +695,7 @@
 				B606E1C1229F8FCE00586C37 /* NISwitchTableViewCell.swift in Sources */,
 				B6CA2E9F22A367F60000E1C3 /* NIFavoritesTableViewController.swift in Sources */,
 				B6DA9E6722963285005A7284 /* NIViewController.swift in Sources */,
+				B6CA524E22FC979F00A2B49B /* NotificationCenter.swift in Sources */,
 				B643800922A07044004AC5AF /* NIService.swift in Sources */,
 				B6CA2E9D22A1BEFB0000E1C3 /* NILoginViewController.swift in Sources */,
 				B606E1B4229F817700586C37 /* NISettingsTableViewController.swift in Sources */,
@@ -715,8 +710,10 @@
 				B6DA9E4E2296305A005A7284 /* NasaImageTests.swift in Sources */,
 				B6143A4E22A0D78500ABC057 /* UIActivityIndicatorView.swift in Sources */,
 				B6DA9E6822963285005A7284 /* NIViewController.swift in Sources */,
+				B69FD11C22A7661D00CE7BB4 /* NIAnalytics.swift in Sources */,
 				B6143A5222A0D78D00ABC057 /* AppDelegate.swift in Sources */,
 				B6143A5022A0D78900ABC057 /* Date.swift in Sources */,
+				B69FD11E22A7662400CE7BB4 /* NIService.swift in Sources */,
 				B600636A22A188E800EFDA97 /* NIReviewHelper.swift in Sources */,
 				B6CA2E9922A1BA160000E1C3 /* NIRealTimeDatabase.swift in Sources */,
 			);
@@ -728,6 +725,7 @@
 			files = (
 				B6143A5322A0D78E00ABC057 /* AppDelegate.swift in Sources */,
 				B6DA9E592296305A005A7284 /* NasaImageUITests.swift in Sources */,
+				B69FD11F22A7662500CE7BB4 /* NIService.swift in Sources */,
 				B600636B22A188E800EFDA97 /* NIReviewHelper.swift in Sources */,
 				B6143A5122A0D78A00ABC057 /* Date.swift in Sources */,
 				B6CA2E9A22A1BA170000E1C3 /* NIRealTimeDatabase.swift in Sources */,
@@ -756,14 +754,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B6437FF722A06EDD004AC5AF /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B6437FF822A06EDD004AC5AF /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		B6DA9E3C22963057005A7284 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -790,6 +780,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CKJX9KBCTH;
 				INFOPLIST_FILE = "NasaImage-Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -810,6 +801,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CKJX9KBCTH;
 				INFOPLIST_FILE = "NasaImage-Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -874,7 +866,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -929,7 +921,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -949,6 +941,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CKJX9KBCTH;
 				INFOPLIST_FILE = NasaImage/Assets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -970,6 +963,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CKJX9KBCTH;
 				INFOPLIST_FILE = NasaImage/Assets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -990,6 +984,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KDV73NN4AT;
 				INFOPLIST_FILE = NasaImageTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -999,7 +994,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NasaImage.app/NasaImage";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nasa Image.app/Nasa Image";
 			};
 			name = Debug;
 		};
@@ -1012,6 +1007,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KDV73NN4AT;
 				INFOPLIST_FILE = NasaImageTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1021,7 +1017,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NasaImage.app/NasaImage";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nasa Image.app/Nasa Image";
 			};
 			name = Release;
 		};
@@ -1033,6 +1029,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KDV73NN4AT;
 				INFOPLIST_FILE = NasaImageUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1054,6 +1051,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KDV73NN4AT;
 				INFOPLIST_FILE = NasaImageUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

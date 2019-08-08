@@ -28,6 +28,7 @@ class NILoginViewController: UIViewController {
 		NILoginService.login(with: email, password, success: {[weak self] authResult in
 			print(authResult)// display success
 			NILoginService.shared.loggedIn = true
+			NotificationCenter.default.post(name: .loginSuccess, object: nil)
 			self?.dismiss(animated: true, completion: nil)
 		}, failure: {[weak self] error in
 			NILoginService.shared.loggedIn = false
@@ -35,8 +36,10 @@ class NILoginViewController: UIViewController {
 				NILoginService.createUser(with: email, password, success: {[weak self] result in
 					print(result)// display success
 					NILoginService.shared.loggedIn = true
+					NotificationCenter.default.post(name: .loginSuccess, object: nil)
 					self?.dismiss(animated: true, completion: nil)
 				}, failure: {[weak self] error in
+					NotificationCenter.default.post(name: .loginFailure, object: nil)
 					if let errorObject = error {
 						self?.presentErrorAlert(errorObject.localizedDescription)
 					}
@@ -44,6 +47,7 @@ class NILoginViewController: UIViewController {
 				})
 			} else if let errorObject = error {
 				guard let self = self else { return }
+				NotificationCenter.default.post(name: .loginFailure, object: nil)
 				self.presentErrorAlert(errorObject.localizedDescription)
 			}
 		})

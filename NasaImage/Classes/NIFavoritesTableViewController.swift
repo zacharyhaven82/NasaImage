@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class NIFavoritesTableViewController: UITableViewController {
 
@@ -29,37 +30,24 @@ class NIFavoritesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.tableFooterView = UIView()
-		
-//		NIRealTimeDatabase.getTopLikes(success: {[weak self] (topLikes) in
-//			self?.topLikes = topLikes
-//		}, failure: { (error) in
-//			// TODO: Deal with error
-//		})
-//		
-//		if let currentUser = NILoginService.getCurrentUser() {
-//			NIRealTimeDatabase.getUserLikes(user: currentUser, success: {[weak self] (userLikes) in
-//				self?.userLikes = userLikes
-//			}, failure: { (error) in
-//				// TODO: Deal with error
-//			})
-//		}
-    }
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
+		tableView.rowHeight = UITableView.automaticDimension
 		NIRealTimeDatabase.getTopLikes(success: {[weak self] (topLikes) in
 			self?.topLikes = topLikes
 			}, failure: {
-				// TODO: Deal with error
+				
 		})
 		
 		if let currentUser = NILoginService.getCurrentUser() {
 			NIRealTimeDatabase.getUserLikes(user: currentUser, success: {[weak self] (userLikes) in
 				self?.userLikes = userLikes
 				}, failure: {
-					// TODO: Deal with error
+					
 			})
 		}
+    }
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 	}
 
     // MARK: - Table view data source
@@ -68,11 +56,6 @@ class NIFavoritesTableViewController: UITableViewController {
 		guard let view = tableView.dequeueReusableCell(withIdentifier: "segmentedControlCell")
 			as? NISegmentedControlTableViewCell
 			else { return nil }
-		if NILoginService.getCurrentUser() == nil {
-			view.segmentedControl.setEnabled(false, forSegmentAt: 1)
-		} else {
-			view.segmentedControl.setEnabled(true, forSegmentAt: 1)
-		}
 		view.segmentedControl.selectedSegmentIndex = showingTopLikes ? 0 : 1
 		view.segmentedControl.addTarget(self,
 										action: #selector(segmentedControlValueChanged(_:)),
@@ -89,35 +72,44 @@ class NIFavoritesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return showingTopLikes ? topLikes.count : userLikes.count
+		return showingTopLikes ? topLikes.count < 20 ? topLikes.count : 20 : userLikes.count
     }
 	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "default")
-		cell.backgroundColor = .black
-		cell.tintColor = .white
-		
-		cell.textLabel?.text = (showingTopLikes ?
-			"\(indexPath.row + 1)) " + topLikes.sorted(by: { $0.value > $1.value })[indexPath.row].key
-			: userLikes[indexPath.row])
-		cell.textLabel?.textColor = .white
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: "webViewCell")
+			as? NIImageViewTableViewCell else { return UITableViewCell() }
+		cell.setupCell(date: showingTopLikes ?
+			topLikes.sorted(by: { $0.value > $1.value })[indexPath.row].key :
+			userLikes[indexPath.row],
+					   count: indexPath.row + 1,
+					   isTop20: showingTopLikes)
 		cell.selectionStyle = .none
         return cell
 	}
 	
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 100
+	}
+	
 	@IBAction func segmentedControlValueChanged(_ sender: Any) {
 		guard let segmentedControl = sender as? UISegmentedControl else { return }
-		showingTopLikes = segmentedControl.selectedSegmentIndex == 0
+		if NILoginService.getCurrentUser() != nil {
+			showingTopLikes = segmentedControl.selectedSegmentIndex == 0
+			tableView.reloadData()
+		} else {
+			performSegue(withIdentifier: "loginFromFavoritesSegue", sender: self)
+			NotificationCenter.default.addObserver(self, selector: #selector(reloadUserLikes), name: .loginSuccess, object: nil)
+		}
 	}
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	
+	@objc func reloadUserLikes() {
+		if let currentUser = NILoginService.getCurrentUser() {
+			NIRealTimeDatabase.getUserLikes(user: currentUser, success: {[weak self] (userLikes) in
+				self?.userLikes = userLikes
+				self?.tableView.reloadData()
+				}, failure: {
+					
+			})
+		}
+	}
 }

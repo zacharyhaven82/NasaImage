@@ -16,12 +16,18 @@ struct NasaImageService {
 	private static let nasaURL = "https://api.nasa.gov/planetary/apod"
 	private static let apiKey = "api_key=BBHc4u9eVEI5L9VPbbBbxRo9yfRezAFMNXsbB4G5"
 	
+	/// This calls the NASA api to retrieve the photo for the date parameter.
+	///
+	/// - Parameter date: The date an image is retrieved for
+	/// - Parameter success: called when operation completes successfully
+	/// - Parameter failure: called when operation fails
 	static func callService(with date: Date,
 							success: @escaping (Any) -> Void,
 							failure: @escaping (String) -> Void) {
 		let fullURL = nasaURL + "?" +  apiKey + "&date=" + date.toString(with: "yyyy-MM-dd")
 		Alamofire.request(fullURL).responseJSON { response in
 			debugPrint(response)
+			if response.response?.statusCode == 503 { failure("Network Failure"); return }
 			switch response.result {
 			case .success(let value):
 				success(value)

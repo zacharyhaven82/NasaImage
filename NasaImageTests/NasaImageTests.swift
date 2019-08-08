@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import NasaImage
+@testable import Nasa_Image
 
 class NasaImageTests: XCTestCase {
 

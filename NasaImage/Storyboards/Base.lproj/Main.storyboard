@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -370,49 +369,57 @@
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="123" id="HQm-IF-Nua">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="webViewCell" rowHeight="123" id="HQm-IF-Nua" customClass="NIImageViewTableViewCell" customModule="Nasa_Image" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HQm-IF-Nua" id="GCW-hz-jf5">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="122.66666666666667"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ayP-V7-Bwm">
-                                            <rect key="frame" x="295" y="0.0" width="80" height="122.66666666666667"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="eHZ-Cj-8gE"/>
-                                            </constraints>
-                                        </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZaN-FS-OVb">
-                                            <rect key="frame" x="16" y="11" width="279" height="101"/>
+                                            <rect key="frame" x="16" y="11" width="343" height="101"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkh-Wh-SQX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="38.333333333333336" height="101"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d0-iU-KxK">
-                                                    <rect key="frame" x="243" y="0.0" width="36" height="101"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="36" height="101"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFf-Xl-PcO">
+                                                    <rect key="frame" x="245" y="0.0" width="98" height="101"/>
+                                                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="yFf-Xl-PcO" secondAttribute="height" multiplier="98:101" id="8F8-Yw-xxk"/>
+                                                    </constraints>
+                                                    <wkWebViewConfiguration key="configuration">
+                                                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                        <wkPreferences key="preferences"/>
+                                                    </wkWebViewConfiguration>
+                                                </wkWebView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="yFf-Xl-PcO" secondAttribute="bottom" id="UrG-Yj-kYT"/>
+                                                <constraint firstItem="yFf-Xl-PcO" firstAttribute="top" secondItem="ZaN-FS-OVb" secondAttribute="top" id="b9R-UT-yBs"/>
+                                                <constraint firstAttribute="trailing" secondItem="yFf-Xl-PcO" secondAttribute="trailing" id="uPH-Ff-aAI"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="ayP-V7-Bwm" firstAttribute="leading" secondItem="ZaN-FS-OVb" secondAttribute="trailing" id="0OZ-eq-USc"/>
                                         <constraint firstItem="ZaN-FS-OVb" firstAttribute="leading" secondItem="GCW-hz-jf5" secondAttribute="leadingMargin" id="0er-Fr-UOh"/>
-                                        <constraint firstItem="ayP-V7-Bwm" firstAttribute="top" secondItem="GCW-hz-jf5" secondAttribute="top" id="A1W-4i-5ce"/>
                                         <constraint firstItem="ZaN-FS-OVb" firstAttribute="top" secondItem="GCW-hz-jf5" secondAttribute="topMargin" id="Bam-Dz-aML"/>
-                                        <constraint firstAttribute="trailing" secondItem="ayP-V7-Bwm" secondAttribute="trailing" id="dvv-qj-0f4"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ZaN-FS-OVb" secondAttribute="trailing" id="PTf-Ge-ZOj"/>
+                                        <constraint firstItem="ZaN-FS-OVb" firstAttribute="top" secondItem="GCW-hz-jf5" secondAttribute="topMargin" id="Z6W-1L-UPL"/>
+                                        <constraint firstItem="ZaN-FS-OVb" firstAttribute="leading" secondItem="GCW-hz-jf5" secondAttribute="leadingMargin" id="ee7-LN-9mZ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="ZaN-FS-OVb" secondAttribute="bottom" id="htV-Mx-cR2"/>
-                                        <constraint firstAttribute="bottom" secondItem="ayP-V7-Bwm" secondAttribute="bottom" id="m1y-1Q-qJq"/>
+                                        <constraint firstItem="ZaN-FS-OVb" firstAttribute="bottom" secondItem="GCW-hz-jf5" secondAttribute="bottomMargin" id="pVs-t3-ITH"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="titleLabel" destination="5d0-iU-KxK" id="z2e-HK-yQm"/>
+                                    <outlet property="webView" destination="yFf-Xl-PcO" id="eSI-6j-LzD"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="segmentedControlCell" rowHeight="45" id="EZt-oz-v22" customClass="NISegmentedControlTableViewCell" customModule="Nasa_Image" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="151" width="375" height="45"/>
@@ -449,6 +456,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Top 20" id="X3K-NA-NGc"/>
+                    <connections>
+                        <segue destination="kzB-yt-cIZ" kind="presentation" identifier="loginFromFavoritesSegue" id="L3d-zI-he2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5uo-Ab-eaZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -501,6 +511,6 @@
         <image name="telescope" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xmb-DL-33p"/>
+        <segue reference="L3d-zI-he2"/>
     </inferredMetricsTieBreakers>
 </document>
